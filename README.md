@@ -1,5 +1,5 @@
 # Raspberry-Pi3-Bplus-setup
-Raspberry Pi 3 Model B+のセットアップメモです。購入した商品は[Raspberry Pi3 B+ コンプリートスターターキット (Standard, 16G)](https://www.amazon.co.jp/dp/B07CRY1JC1/)です。
+Raspberry Pi 3 Model B+のセットアップメモです。購入した商品は[Raspberry Pi3 B+ コンプリートスターターキット(Standard, 16G)](https://www.amazon.co.jp/dp/B07CRY1JC1/)です。
 
 ## パワーオンまで
 1. microSDを差し込む。  
