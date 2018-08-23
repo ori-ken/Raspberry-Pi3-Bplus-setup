@@ -22,4 +22,17 @@ Raspberry Pi 3 Model B+のセットアップメモです。購入した商品は
 $ sudo touch /boot/ssh
 $ sudo reboot
 ```
+## wifiへの固定IPアドレス割当て
+ssh接続できてもIPアドレスがわからないと意味がないので、決まったIPアドレスが割当てられるように設定してする。
+```
+$ sudo vi /etc/dhcpcd.conf
+(省略)
+# 末尾に追記
+interface wlan0
+static ip_address=192.168.1.221/24      #割当てたいIPアドレス
+static routers=192.168.1.1              #ネットワークのデフォルトゲートウェイ
+static domain_name_servers=192.168.1.1  #ゲートウェイと同じで良いっぽい
+# 追記ここまで。保存して終了
+$ sudo reboot
+```
 
