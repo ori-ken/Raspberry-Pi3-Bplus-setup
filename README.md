@@ -15,3 +15,11 @@ Raspberry Pi 3 Model B+のセットアップメモです。購入した商品は
 1. wifi設定
 1. OSアップデート
     1. スキップ可能
+
+## ssh有効化
+デフォルト設定ではssh接続できないため有効化する。(セキュリティ関係だそうです。詳細は[ここ。](https://www.raspberrypi.org/blog/a-security-update-for-raspbian-pixel/))
+```
+$ sudo touch /boot/ssh
+$ sudo reboot
+```
+
