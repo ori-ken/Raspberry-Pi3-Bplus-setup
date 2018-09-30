@@ -35,4 +35,10 @@ static domain_name_servers=192.168.1.1  #ゲートウェイと同じで良いっ
 # 追記ここまで。保存して終了
 $ sudo reboot
 ```
+## gitの設定
+gitを利用するための細かな設定をする。
+```
+hoge
+```
+
 
