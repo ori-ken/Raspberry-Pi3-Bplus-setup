@@ -38,7 +38,7 @@ $ sudo reboot
 ## gitの設定
 gitを利用するための細かな設定をする。
 ```
-hoge
+$ vi .gitconf
 ```
 
 
