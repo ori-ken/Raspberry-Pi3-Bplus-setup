@@ -47,5 +47,7 @@ $ vi .gitconfig
 	name = "ori-ken"
 	email = xxxxxxx@gmail.com
 ```
+## vimの導入
+デフォルトのviは使いにくいのでvimを導入する。
 
 
