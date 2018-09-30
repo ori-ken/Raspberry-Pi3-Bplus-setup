@@ -36,9 +36,16 @@ static domain_name_servers=192.168.1.1  #ゲートウェイと同じで良いっ
 $ sudo reboot
 ```
 ## gitの設定
-gitを利用するための細かな設定をする。
+gitを利用するための細かな設定をする。設定後何かクローンしてみてからコミット＆プッシュして、プッシュできることを確認する。。
 ```
-$ vi .gitconf
+$ vi .gitconfig
+以下を追加
+[core]
+	editor = vi
+
+[user]
+	name = "ori-ken"
+	email = xxxxxxx@gmail.com
 ```
 
 
