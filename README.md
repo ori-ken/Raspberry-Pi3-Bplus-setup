@@ -46,6 +46,12 @@ $ vi .gitconfig
 [user]
 	name = "ori-ken"
 	email = xxxxxxx@gmail.com
+後々の自動化のためにユーザ名とパスワードを登録しておく。プッシュ時にパスワードを省略するため。
+$ vi .netrc
+以下を追加
+machine github.com
+login ori-ken
+password xxxxxxx
 ```
 ## vimの導入
 デフォルトのviは使いにくいのでvimを導入する。
