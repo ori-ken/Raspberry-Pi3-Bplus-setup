@@ -55,5 +55,29 @@ password xxxxxxx
 ```
 ## vimの導入
 デフォルトのviは使いにくいのでvimを導入する。
+```
+バージョン確認
+$ vi --version
+(省略)
+Small version without GUI. ...
+(省略)
 
+パッケージアンインストール
+$ sudo apt-get --purge remove vim-common vim-tiny
+パッケージインストール
+$ sudo apt-get install vim
+
+バージョン確認
+$ vi --version
+(省略)
+Huge 版 without GUI. ...
+(省略)
+
+お好みで設定
+$ cd
+$ vi .vimrc
+set ts=4
+(以下略)
+```
+## ？？？
 
