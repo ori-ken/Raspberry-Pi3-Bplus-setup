@@ -79,5 +79,24 @@ $ vi .vimrc
 set ts=4
 (以下略)
 ```
-## ？？？
+## bashrcの設定
+細かい設定をする。
+```
+$ cd 
+$ vi .bashrc
+デフォルトのプロンプトはカレントディレクトリのパス階層が深くなると、そのフルパスが表示されるため見づらい。
+カレントディレクトリ名だけ表示する。
+#以下をコメントアウト
+#    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w \$\[\033[00m\] '
+#以下を追加。”[pi@raspberrypi ~ ]$ ”のように表示される。
+　　　　　　　　　　PS1='[\u@\h \W ]\$ '
+
+lsエイリアスを変更して、カラー表示にする。
+# enable color support of ls and also add handy aliases
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls --color=auto'　　　　#コメントアウトを外す。
+    alias ll='ls -l'            #追加する。
+
+```
 
