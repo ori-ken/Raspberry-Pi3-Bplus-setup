@@ -100,7 +100,7 @@ if [ -x /usr/bin/dircolors ]; then
 
 ```
 ## USBメモリを自動マウントする
-開発用のディレクトリ/prodをUSBメモリからマウントする。
+開発用のディレクトリ/prodをUSBメモリからマウントする。購入した商品は[Samsung USBメモリ 32GB Fitタイプ 正規代理店保証品 MUF-32AB/EC](https://www.amazon.co.jp/gp/product/B07GYWPHY6/)です。
 ```
 デフォルトのマウントは以下
 $ df -ah
