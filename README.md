@@ -99,4 +99,45 @@ if [ -x /usr/bin/dircolors ]; then
     alias ll='ls -l'            #追加する。
 
 ```
+## USBメモリを自動マウントする
+開発用のディレクトリ/prodをUSBメモリからマウントする。
+```
+デフォルトのマウントは以下
+$ df -ah
+
+
+USBメモリを挿して以下を実行。/dev/sda1にマウントされていることを確認する。
+$ sudo fdisk -l
+
+
+パーティション情報の書込み。
+$ sudo fdisk /dev/sda1
+Command (m for help): d //削除
+Command (m for help): n //追加
+Select (default p): p
+Partition number (1-4, default 1): 1
+Command (m for help): w　//書込み
+
+USBメモリをフォーマットを実行。
+$ sudo mkfs.ext4 /dev/sda1
+
+マウント実行。
+$ sudo mkdir /prod
+$ sudo mount /dev/sda1 /prod
+$ df -ah
+
+起動時の自動マウント設定。UUIDをメモる。
+$ sudo blkid /dev/sda1
+
+fstabに設定追加。fstabはバックアップしておくこと。
+$ cd /etc
+$ vi fstab
+proc            /proc       proc    defaults          0       0
+/dev/mmcblk0p1  /boot       vfat    defaults          0       2
+/dev/mmcblk0p2  /           ext4    defaults,noatime  0       1
+#以下追加
+UUID=＜メモ通りのID＞ /prod    ext4    defaults,noatime  0       0
+
+最後に再起動して、dfコマンドでマウントされていることを確認する。
+```
 
