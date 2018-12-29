@@ -103,40 +103,78 @@ if [ -x /usr/bin/dircolors ]; then
 開発用のディレクトリ/prodをUSBメモリからマウントする。購入した商品は[Samsung USBメモリ 32GB Fitタイプ 正規代理店保証品 MUF-32AB/EC](https://www.amazon.co.jp/gp/product/B07GYWPHY6/)です。
 ```
 デフォルトのマウントは以下
-$ df -ah
-
+$ df -h
+ファイルシス   サイズ  使用  残り 使用% マウント位置
+/dev/root         15G  4.0G  9.8G   29% /
+devtmpfs         460M     0  460M    0% /dev
+tmpfs            464M     0  464M    0% /dev/shm
+tmpfs            464M   18M  446M    4% /run
+tmpfs            5.0M  4.0K  5.0M    1% /run/lock
+tmpfs            464M     0  464M    0% /sys/fs/cgroup
+/dev/mmcblk0p1    43M   22M   21M   51% /boot
+tmpfs             93M     0   93M    0% /run/user/1000
 
 USBメモリを挿して以下を実行。/dev/sda1にマウントされていることを確認する。
 $ sudo fdisk -l
+(省略)
+Disk /dev/sda: 29.9 GiB, 32080200192 bytes, 62656641 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disklabel type: dos
+Disk identifier: 0xc3072e18
 
+Device     Boot Start      End  Sectors  Size Id Type
+/dev/sda1         224 62656640 62656417 29.9G  c W95 FAT32 (LBA)
 
 パーティション情報の書込み。
 $ sudo fdisk /dev/sda1
-Command (m for help): d //削除
+Command (m for help): d //削除。１〜４全部削除
 Command (m for help): n //追加
+Partition type
+   p   primary (0 primary, 0 extended, 4 free)
+   e   extended (container for logical partitions)
 Select (default p): p
 Partition number (1-4, default 1): 1
-Command (m for help): w　//書込み
+First sector (2048-62656416, default 2048): 2048
+Last sector, +sectors or +size{K,M,G,T,P} (2048-62656416, default 62656416):
+
+Created a new partition 1 of type 'Linux' and of size 29.9 GiB.
 
 USBメモリをフォーマットを実行。
 $ sudo mkfs.ext4 /dev/sda1
+mke2fs 1.43.4 (31-Jan-2017)
+/dev/sda1 contains a vfat file system labelled 'Samsung USB'
+Proceed anyway? (y,N) y
+/dev/sda1 is mounted; will not make a filesystem here!
 
 マウント実行。
 $ sudo mkdir /prod
 $ sudo mount /dev/sda1 /prod
 $ df -ah
+ファイルシス   サイズ  使用  残り 使用% マウント位置
+/dev/root         15G  4.0G  9.8G   29% /
+devtmpfs         460M     0  460M    0% /dev
+tmpfs            464M     0  464M    0% /dev/shm
+tmpfs            464M   18M  446M    4% /run
+tmpfs            5.0M  4.0K  5.0M    1% /run/lock
+tmpfs            464M     0  464M    0% /sys/fs/cgroup
+/dev/mmcblk0p1    43M   22M   21M   51% /boot
+tmpfs             93M     0   93M    0% /run/user/1000
+/dev/sda1         30G   16K   30G    1% /prod
 
 起動時の自動マウント設定。UUIDをメモる。
 $ sudo blkid /dev/sda1
+/dev/sda1: LABEL="Samsung USB" UUID="B341-952D" TYPE="vfat" PARTUUID="c3072e18-01"
 
 fstabに設定追加。fstabはバックアップしておくこと。
 $ cd /etc
 $ vi fstab
-proc            /proc       proc    defaults          0       0
-/dev/mmcblk0p1  /boot       vfat    defaults          0       2
-/dev/mmcblk0p2  /           ext4    defaults,noatime  0       1
+proc            /proc           proc    defaults          0       0
+PARTUUID=fc7f0d83-01  /boot           vfat    defaults          0       2
+PARTUUID=fc7f0d83-02  /               ext4    defaults,noatime  0       1
 #以下追加
-UUID=＜メモ通りのID＞ /prod    ext4    defaults,noatime  0       0
+UUID=B341-952D /prod    ext4    defaults,noatime  0       0
 
 最後に再起動して、dfコマンドでマウントされていることを確認する。
 ```
