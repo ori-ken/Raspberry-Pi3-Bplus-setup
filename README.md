@@ -146,7 +146,17 @@ $ sudo mkfs.ext4 /dev/sda1
 mke2fs 1.43.4 (31-Jan-2017)
 /dev/sda1 contains a vfat file system labelled 'Samsung USB'
 Proceed anyway? (y,N) y
-/dev/sda1 is mounted; will not make a filesystem here!
+Creating filesystem with 7831552 4k blocks and 1961712 inodes
+proc            /proc           proc    defaults          0       0
+Filesystem UUID: 80884d3b-5af4-41be-95f4-6b9090d49541
+Superblock backups stored on blocks:
+	32768, 98304, 163840, 229376, 294912, 819200, 884736, 1605632, 2654208,
+	4096000
+
+Allocating group tables: done
+Writing inode tables: done
+Creating journal (32768 blocks): done
+Writing superblocks and filesystem accounting information: done
 
 マウント実行。
 $ sudo mkdir /prod
@@ -165,7 +175,7 @@ tmpfs             93M     0   93M    0% /run/user/1000
 
 起動時の自動マウント設定。UUIDをメモる。
 $ sudo blkid /dev/sda1
-/dev/sda1: LABEL="Samsung USB" UUID="B341-952D" TYPE="vfat" PARTUUID="c3072e18-01"
+/dev/sda1: UUID="80884d3b-5af4-41be-95f4-6b9090d49541" TYPE="ext4" PARTUUID="c3072e18-01"
 
 fstabに設定追加。fstabはバックアップしておくこと。
 $ cd /etc
@@ -174,8 +184,11 @@ proc            /proc           proc    defaults          0       0
 PARTUUID=fc7f0d83-01  /boot           vfat    defaults          0       2
 PARTUUID=fc7f0d83-02  /               ext4    defaults,noatime  0       1
 #以下追加
-UUID=B341-952D /prod    ext4    defaults,noatime  0       0
+UUID=80884d3b-5af4-41be-95f4-6b9090d49541        /prod           ext4    defaults,nofail   0       0
+
+cmdline.txtにディレイを仕込む。ラズパイのメモリーカードをMACなどにマウントして、cmdline.txtを編集する。
+「rootwait」の前に「rootdelay=10」を追記する。
+dwc_otg.lpm_enable=0 console=serial0,115200 console=tty1 root=PARTUUID=fc7f0d83-02 rootfstype=ext4 elevator=deadline fsck.repair=yes rootdelay=10 rootwait quiet splash plymouth.ignore-serial-consoles
 
 最後に再起動して、dfコマンドでマウントされていることを確認する。
 ```
-
