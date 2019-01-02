@@ -192,3 +192,28 @@ dwc_otg.lpm_enable=0 console=serial0,115200 console=tty1 root=PARTUUID=fc7f0d83-
 
 最後に再起動して、dfコマンドでマウントされていることを確認する。
 ```
+
+## cronの設定
+cronを使うための設定
+```
+rsyslogの設定変更を行い、実行ログを出す。
+# cd /etc
+# vi rsyslog.conf
+# First some standard log files.  Log by facility.
+#
+auth,authpriv.*         /var/log/auth.log
+*.*;auth,authpriv.none      -/var/log/syslog
+cron.*              /var/log/cron.log  <-先頭の#をとってコメントアウト解除
+daemon.*            -/var/log/daemon.log
+kern.*              -/var/log/kern.log
+lpr.*               -/var/log/lpr.log
+mail.*              -/var/log/mail.log
+user.*              -/var/log/user.log
+
+rsyslogの再起動
+# systemctl restart rsyslog
+
+crontabへのコマンド登録
+
+
+```
