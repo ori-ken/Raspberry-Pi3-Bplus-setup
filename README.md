@@ -213,7 +213,7 @@ user.*              -/var/log/user.log
 rsyslogの再起動
 # systemctl restart rsyslog
 
-crontabへのコマンド登録(コマンド名は、hoge.shやhoge.pyのように.を含めてはいけない。)
+crontabへのコマンド登録
 $ crontab -e
 # m h  dom mon dow   command
 */1 * * * * /prod/git/scraping-rbp/auto-upload >> /prod/var/log/auto-upload.log
