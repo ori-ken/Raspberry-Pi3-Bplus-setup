@@ -22,6 +22,14 @@ Raspberry Pi 3 Model B+のセットアップメモです。購入した商品は
 $ sudo touch /boot/ssh
 $ sudo reboot
 ```
+## rootパスワード設定
+sudoではなくrootユーザで作業をする場合は、パスワードを設定する。
+```
+$ sudo passwd root
+(パスワード入力する)
+$ su -
+# <- プロンプト変わればOK
+```
 ## wifiへの固定IPアドレス割当て
 ssh接続できてもIPアドレスがわからないと意味がないので、決まったIPアドレスが割当てられるように設定してする。
 ```
