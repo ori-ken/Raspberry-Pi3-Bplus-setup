@@ -226,3 +226,78 @@ $ crontab -e
 # m h  dom mon dow   command
 */1 * * * * /prod/git/scraping-rbp/auto-upload >> /prod/var/log/auto-upload.log
 ```
+
+## mecab-python3のインストール
+機械学習の前段として、mecabをインストールする。
+```
+apt-getのアップデート＆アップグレード
+$ sudo apt-get update
+取得:1 http://archive.raspberrypi.org/debian stretch InRelease [25.4 kB]
+取得:2 http://raspbian.raspberrypi.org/raspbian stretch InRelease [15.0 kB]
+取得:3 http://raspbian.raspberrypi.org/raspbian stretch/main armhf Packages [11.7 MB]
+取得:4 http://archive.raspberrypi.org/debian stretch/main armhf Packages [201 kB]
+取得:5 http://archive.raspberrypi.org/debian stretch/ui armhf Packages [40.8 kB]
+取得:6 http://raspbian.raspberrypi.org/raspbian stretch/contrib armhf Packages [56.9 kB]
+取得:7 http://raspbian.raspberrypi.org/raspbian stretch/non-free armhf Packages [95.5 kB]
+12.1 MB を 35秒 で取得しました (343 kB/s)
+パッケージリストを読み込んでいます... 完了
+$ sudo apt-get upgrade
+（省略）
+ca-certificates (20161130+nmu1+deb9u1) のトリガを処理しています ...
+Updating certificates in /etc/ssl/certs...
+0 added, 0 removed; done.
+Running hooks in /etc/ca-certificates/update.d...
+done.
+
+mecab本体等のインストール
+$ sudo apt-get install mecab libmecab-dev mecab-ipadic-utf8 python-mecab
+(省略)
+reading /usr/share/mecab/dic/juman/Demonstrative.csv ... 76
+emitting double-array: 100% |###########################################|
+reading /usr/share/mecab/dic/juman/matrix.def ... 1509x1509
+emitting matrix      : 100% |###########################################|
+
+done!
+
+swigのインストール
+$ sudo apt-get install swig
+パッケージリストを読み込んでいます... 完了
+依存関係ツリーを作成しています
+状態情報を読み取っています... 完了
+以下の追加パッケージがインストールされます:
+  swig3.0
+提案パッケージ:
+  swig-doc swig-examples swig3.0-examples swig3.0-doc
+以下のパッケージが新たにインストールされます:
+  swig swig3.0
+アップグレード: 0 個、新規インストール: 2 個、削除: 0 個、保留: 3 個。
+1,510 kB のアーカイブを取得する必要があります。
+この操作後に追加で 5,588 kB のディスク容量が消費されます。
+続行しますか? [Y/n] Y
+取得:1 http://ftp.tsukuba.wide.ad.jp/Linux/raspbian/raspbian stretch/main armhf swig3.0 armhf 3.0.10-1.1 [1,205 kB]
+取得:2 http://ftp.tsukuba.wide.ad.jp/Linux/raspbian/raspbian stretch/main armhf swig armhf 3.0.10-1.1 [305 kB]
+1,510 kB を 2秒 で取得しました (731 kB/s)
+以前に未選択のパッケージ swig3.0 を選択しています。
+(データベースを読み込んでいます ... 現在 117879 個のファイルとディレクトリがインストールされています。)
+.../swig3.0_3.0.10-1.1_armhf.deb を展開する準備をしています ...
+swig3.0 (3.0.10-1.1) を展開しています...
+以前に未選択のパッケージ swig を選択しています。
+.../swig_3.0.10-1.1_armhf.deb を展開する準備をしています ...
+swig (3.0.10-1.1) を展開しています...
+swig3.0 (3.0.10-1.1) を設定しています ...
+man-db (2.7.6.1-2) のトリガを処理しています ...
+swig (3.0.10-1.1) を設定しています ...
+
+mecab-python3のインストール
+$ sudo pip3 install mecab-python3
+Collecting mecab-python3
+  Using cached https://files.pythonhosted.org/packages/ac/48/295efe525df40cbc2173748eb869290e81a57e835bc41f6d3834fc5dad5f/mecab-python3-0.996.1.tar.gz
+Building wheels for collected packages: mecab-python3
+  Running setup.py bdist_wheel for mecab-python3 ... done
+  Stored in directory: /root/.cache/pip/wheels/73/71/4f/63a79925b5e9bb38932043917cc60140beb8022ac14a952b1e
+Successfully built mecab-python3
+Installing collected packages: mecab-python3
+Successfully installed mecab-python3-0.996.1
+
+```
+
