@@ -300,4 +300,31 @@ Installing collected packages: mecab-python3
 Successfully installed mecab-python3-0.996.1
 
 ```
+## fastTextのインストール
+python3用のfastTextをインストールする。
+```
+githubからクローンする。
+$ git clone https://github.com/facebookresearch/fastText.git
+Cloning into 'fastText'...
+remote: Enumerating objects: 2895, done.
+remote: Total 2895 (delta 0), reused 0 (delta 0), pack-reused 2895
+Receiving objects: 100% (2895/2895), 7.71 MiB | 3.00 MiB/s, done.
+Resolving deltas: 100% (1828/1828), done.
 
+rootでインストールする。
+# cd fastText/
+# pip3 install .
+Processing /home/pi/git/fastText
+Requirement already satisfied: numpy in /usr/lib/python3/dist-packages (from fasttext==0.8.22)
+Requirement already satisfied: pybind11>=2.2 in /usr/local/lib/python3.5/dist-packages (from fasttext==0.8.22)
+Requirement already satisfied: setuptools>=0.7.0 in /usr/lib/python3/dist-packages (from fasttext==0.8.22)
+Installing collected packages: fasttext
+  Running setup.py install for fasttext ... done
+Successfully installed fasttext-0.8.22
+$ $ pip3 list
+<省略>
+ExplorerHAT (0.4.2)
+fasttext (0.8.22)
+Flask (0.12.1)
+<省略>
+```
