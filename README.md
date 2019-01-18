@@ -321,7 +321,7 @@ Requirement already satisfied: setuptools>=0.7.0 in /usr/lib/python3/dist-packag
 Installing collected packages: fasttext
   Running setup.py install for fasttext ... done
 Successfully installed fasttext-0.8.22
-$ $ pip3 list
+$ pip3 list
 <省略>
 ExplorerHAT (0.4.2)
 fasttext (0.8.22)
