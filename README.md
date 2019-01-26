@@ -328,3 +328,28 @@ fasttext (0.8.22)
 Flask (0.12.1)
 <省略>
 ```
+## ethtoolのインストール
+ethtoolをインストールする。
+```
+apt-getでインストール
+# apt-get install ethtool
+パッケージリストを読み込んでいます... 完了
+依存関係ツリーを作成しています
+状態情報を読み取っています... 完了
+以下のパッケージが新たにインストールされます:
+  ethtool
+アップグレード: 0 個、新規インストール: 1 個、削除: 0 個、保留: 3 個。
+96.4 kB のアーカイブを取得する必要があります。
+この操作後に追加で 305 kB のディスク容量が消費されます。
+取得:1 http://ftp.tsukuba.wide.ad.jp/Linux/raspbian/raspbian stretch/main armhf ethtool armhf 1:4.8-1 [96.4 kB]
+96.4 kB を 1秒 で取得しました (57.3 kB/s)
+以前に未選択のパッケージ ethtool を選択しています。
+(データベースを読み込んでいます ... 現在 118652 個のファイルとディレクトリがインストールされています。)
+.../ethtool_1%3a4.8-1_armhf.deb を展開する準備をしています ...
+ethtool (1:4.8-1) を展開しています...
+man-db (2.7.6.1-2) のトリガを処理しています ...
+ethtool (1:4.8-1) を設定しています ...
+
+# ethtool --version
+ethtool version 4.8
+```
